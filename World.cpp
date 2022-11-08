@@ -102,6 +102,13 @@ Pixel Snake::getHead()
     return body.get(0);
 }
 
+int Snake::size()
+{
+    /// @brief  Returns the size of the snake
+    /// @return The size of the snake
+    return body.getSize();
+}
+
 World::World()
 {
     /// @brief  Constructor of World class
@@ -228,4 +235,24 @@ void World::print()
     cout << "Snake 2: " << endl;
     snake2.print();
     cout << "Food: " << food.x << ", " << food.y << endl;
+}
+
+void World::draw(){
+    /// @brief  Draws the world
+    int snake1_arr[snake1.size()][2];
+    for (int i = 0, i < snake1.size(), i++){
+        snake1_arr[i][0] = snake1.body.get(i).x;
+        snake1_arr[i][1] = snake1.body.get(i).y;
+    }
+
+    int snake2_arr[snake2.size()][2];
+    for (int i = 0, i < snake2.size(), i++){
+        snake2_arr[i][0] = snake2.body.get(i).x;
+        snake2_arr[i][1] = snake2.body.get(i).y;
+    }
+
+    draw_snake(snake1_arr, snake1.size(), 0);
+    draw_snake(snake2_arr, snake2.size(), 0);
+    draw_food(food.x, food.y);
+    monitor_display();
 }

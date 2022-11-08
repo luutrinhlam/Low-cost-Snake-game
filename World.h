@@ -1,6 +1,7 @@
 #ifndef __World_h__
 #define __World_h__
 #include "LinkedList.h"
+#include "monitors.h"
 
 #define INITIAL_SNAKE_LENGTH 3
 #define MATRIX_LENGTH 32
@@ -45,6 +46,7 @@ class Snake{
         void changeDirection(DIRECTION direction);
         Pixel getHead();
         void print();
+        int size();
 };
 
 class World{
@@ -62,6 +64,7 @@ class World{
         bool isGameOver();
         void update();
         void print();
+        void draw();
 };
 
 #endif
