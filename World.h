@@ -10,6 +10,7 @@ struct Pixel {
     int x;
     int y;
     bool operator==(const Pixel&) const;
+    friend ostream& operator<<(ostream& os, const Pixel& p);
 };
 
 enum DIRECTION {

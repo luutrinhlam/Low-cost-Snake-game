@@ -10,7 +10,13 @@ bool Pixel::operator==(const Pixel &p) const
     return x == p.x && y == p.y;
 }
 
-Snake::Snake(){}
+ostream &operator<<(ostream &os, const Pixel &p)
+{
+    os << "x= " << p.x << ", y=" << p.y;
+    return os;
+}
+
+Snake::Snake() {}
 
 Snake::Snake(Pixel initialPoint, DIRECTION direction)
 {
@@ -21,7 +27,7 @@ Snake::Snake(Pixel initialPoint, DIRECTION direction)
     this->direction = direction;
 
     // Add the rest of the initial body
-    for (int i = 0; i++; i < INITIAL_SNAKE_LENGTH)
+    for (int i = 1; i < INITIAL_SNAKE_LENGTH; i++)
     {
         this->move(true, Pixel{-1, -1});
     }
@@ -100,15 +106,21 @@ World::World()
 {
     /// @brief  Constructor of World class
     srand(time(NULL));
-    Pixel initialPoint;
-    initialPoint.x = MATRIX_LENGTH / 2;
-    initialPoint.y = MATRIX_WIDTH / 2;
-    snake1 = Snake(initialPoint, RIGHT);
-    snake2 = Snake(initialPoint, LEFT);
+    //Player 1
+    Pixel initialPointP1;
+    initialPointP1.x = MATRIX_LENGTH / 2;
+    initialPointP1.y = MATRIX_WIDTH / 2;
+
+    //Player 2
+    Pixel initialPointP2;
+    initialPointP2.x = MATRIX_LENGTH / 2 - 1;
+    initialPointP2.y = MATRIX_WIDTH / 2 - 1;
+    snake1 = Snake(initialPointP1, RIGHT);
+    snake2 = Snake(initialPointP2, LEFT);
     score1 = 0;
     score2 = 0;
     result = PLAYING;
-    updateFood();
+    food = {19, 8};
 }
 
 void World::updateFood()
@@ -205,7 +217,8 @@ void Snake::print()
     cout << "Direction: " << direction << endl;
 }
 
-void World::print(){
+void World::print()
+{
     /// @brief  Prints the world
     cout << "Score 1: " << score1 << endl;
     cout << "Score 2: " << score2 << endl;
@@ -216,4 +229,3 @@ void World::print(){
     snake2.print();
     cout << "Food: " << food.x << ", " << food.y << endl;
 }
-

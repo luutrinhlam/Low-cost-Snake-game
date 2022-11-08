@@ -33,6 +33,7 @@ void LinkedList<T>::add(T data)
 template <class T>
 void LinkedList<T>::print()
 {
+    cout << "Size: " << size << endl;
     Node *temp = head;
     while (temp != nullptr)
     {
