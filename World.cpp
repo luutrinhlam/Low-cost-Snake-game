@@ -1,20 +1,17 @@
 #include "World.h"
 #include <time.h>
 #include <stdlib.h>
-#include <iostream>
-
-using namespace std;
 
 bool Pixel::operator==(const Pixel &p) const
 {
     return x == p.x && y == p.y;
 }
 
-ostream &operator<<(ostream &os, const Pixel &p)
-{
-    os << "x= " << p.x << ", y=" << p.y;
-    return os;
-}
+//ostream &operator<<(ostream &os, const Pixel &p)
+//{
+//    os << "x= " << p.x << ", y=" << p.y;
+//    return os;
+//}
 
 Snake::Snake() {}
 
@@ -127,7 +124,7 @@ World::World()
     score1 = 0;
     score2 = 0;
     result = PLAYING;
-    food = {19, 8};
+    food = {25, 8};
 }
 
 void World::updateFood()
@@ -211,7 +208,7 @@ void World::update()
                 default:
                     break;
                 }
-                cout << "Result: " << result << endl;
+                // cout << "Result: " << result << endl;
             }
         }
     }
@@ -221,38 +218,37 @@ void Snake::print()
 {
     /// @brief  Prints the snake
     body.print();
-    cout << "Direction: " << direction << endl;
+    // cout << "Direction: " << direction << endl;
 }
 
 void World::print()
 {
     /// @brief  Prints the world
-    cout << "Score 1: " << score1 << endl;
-    cout << "Score 2: " << score2 << endl;
-    cout << "Result: " << result << endl;
-    cout << "Snake 1: " << endl;
-    snake1.print();
-    cout << "Snake 2: " << endl;
-    snake2.print();
-    cout << "Food: " << food.x << ", " << food.y << endl;
+    // cout << "Score 1: " << score1 << endl;
+    // cout << "Score 2: " << score2 << endl;
+    // cout << "Result: " << result << endl;
+    // cout << "Snake 1: " << endl;
+    // snake1.print();
+    // cout << "Snake 2: " << endl;
+    // snake2.print();
+    // cout << "Food: " << food.x << ", " << food.y << endl;
 }
 
 void World::draw(){
     /// @brief  Draws the world
     int snake1_arr[snake1.size()][2];
-    for (int i = 0, i < snake1.size(), i++){
+    for (int i = 0; i < snake1.size(); i++){
         snake1_arr[i][0] = snake1.body.get(i).x;
         snake1_arr[i][1] = snake1.body.get(i).y;
     }
 
     int snake2_arr[snake2.size()][2];
-    for (int i = 0, i < snake2.size(), i++){
+    for (int i = 0; i < snake2.size(); i++){
         snake2_arr[i][0] = snake2.body.get(i).x;
         snake2_arr[i][1] = snake2.body.get(i).y;
     }
 
     draw_snake(snake1_arr, snake1.size(), 0);
-    draw_snake(snake2_arr, snake2.size(), 0);
+    draw_snake(snake2_arr, snake2.size(), 1);
     draw_food(food.x, food.y);
-    monitor_display();
 }

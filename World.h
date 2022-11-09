@@ -1,7 +1,7 @@
 #ifndef __World_h__
 #define __World_h__
 #include "LinkedList.h"
-#include "monitors.h"
+#include "monitor.h"
 
 #define INITIAL_SNAKE_LENGTH 3
 #define MATRIX_LENGTH 32
@@ -11,7 +11,7 @@ struct Pixel {
     int x;
     int y;
     bool operator==(const Pixel&) const;
-    friend ostream& operator<<(ostream& os, const Pixel& p);
+//    friend ostream& operator<<(ostream& os, const Pixel& p);
 };
 
 enum DIRECTION {

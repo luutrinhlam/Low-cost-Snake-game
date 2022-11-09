@@ -1,12 +1,19 @@
-#include "World.h"
-#include <iostream>
+// #include "World.h"
+// // #include <iostream>
 
-using namespace std;
+// using namespace std;
 
-int main(){
-    World world;
-    world.print();
-    world.update();
-    world.print();
-    return 0;
-}
+// int main(){
+//     World world;
+
+//     while(1) {
+//         // world.print();
+//         if(millis() - pre_update_time >= 200) {
+//             pre_update_time = millis();
+//             world.update();
+//         }
+//         monitor_draw();
+//         // world.print();
+//     }
+//     return 0;
+// }
