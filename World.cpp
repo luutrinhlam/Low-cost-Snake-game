@@ -124,7 +124,7 @@ World::World()
     score1 = 0;
     score2 = 0;
     result = PLAYING;
-    food = {25, 8};
+    updateFood();
 }
 
 void World::updateFood()
@@ -181,7 +181,8 @@ void World::update()
     if (result == PLAYING)
     {
         bool ateFood1 = snake1.move(false, food);
-        bool ateFood2 = snake2.move(false, food);
+        //bool ateFood2 = snake2.move(false, food);
+        bool ateFood2 = false;
         if (ateFood1 || ateFood2)
         {
             updateFood();

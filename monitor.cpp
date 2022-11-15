@@ -1,4 +1,6 @@
 #include "monitor.h"
+#include "stdlib.h"
+#include "World.h"
 
 U8GLIB_SH1106_128X64 u8g(U8G_I2C_OPT_NONE);
 
@@ -28,6 +30,8 @@ uint8_t snake1_len=0;
 uint8_t snake2_locs[50][2];
 uint8_t snake2_len=0;
 uint8_t food_locs[2]={0,0};
+char score_1[4];
+char score_2[4];
 
 void draw();
 
@@ -39,6 +43,15 @@ void draw() {
     u8g.drawBitmapP(snake2_locs[i][0], snake2_locs[i][1], 1, 4, snake2_bitmap);
   }
   u8g.drawBitmapP(food_locs[0], food_locs[1], 1, 4, food_bitmap);
+
+
+  u8g.drawBox((MATRIX_LENGTH)*4, 0, 4, MATRIX_WIDTH*4);
+  
+  u8g.setFont(u8g_font_5x8);
+  u8g.drawStr((MATRIX_LENGTH+3)*4, 10, "P1:");
+  u8g.drawStr((MATRIX_LENGTH+3)*4, 20, score_1);
+  u8g.drawStr((MATRIX_LENGTH+3)*4, 40, "P2:");
+  u8g.drawStr((MATRIX_LENGTH+3)*4, 50, score_2);
 }
 
 void monitor_display() {
@@ -72,4 +85,9 @@ void draw_snake(int snake_arr[][2], int snake_len, int which_snake) {
 void draw_food(int x, int y) {
   food_locs[0] = 4*x;
   food_locs[1] = 4*y;
+}
+
+void draw_score(int s1, int s2) {
+  itoa(s1,score_1,10);
+  itoa(s2,score_2,10);
 }

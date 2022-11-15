@@ -4,7 +4,7 @@
 #include "monitor.h"
 
 #define INITIAL_SNAKE_LENGTH 3
-#define MATRIX_LENGTH 32
+#define MATRIX_LENGTH 24
 #define MATRIX_WIDTH 16
 
 struct Pixel {
@@ -15,10 +15,10 @@ struct Pixel {
 };
 
 enum DIRECTION {
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
+    UP=1,
+    DOWN=3,
+    LEFT=4,
+    RIGHT=2
 };
 
 enum PLAYER {
@@ -54,10 +54,10 @@ class World{
         Snake snake1;
         Snake snake2;
         Pixel food;
+    public:
         int score1;
         int score2;
         RESULT result;
-    public:
         World();
         void updateFood();
         void changeDirection(PLAYER player, DIRECTION direction);
