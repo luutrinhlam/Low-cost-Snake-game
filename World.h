@@ -65,6 +65,7 @@ class World{
         void update();
         void print();
         void draw();
+        void startNewRound();
 };
 
 #endif

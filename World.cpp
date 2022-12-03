@@ -253,3 +253,20 @@ void World::draw(){
     draw_snake(snake2_arr, snake2.size(), 1);
     draw_food(food.x, food.y);
 }
+
+void World::startNewRound(){
+    /// @brief  Starts a new round
+    //Player 1
+    Pixel initialPointP1;
+    initialPointP1.x = MATRIX_LENGTH / 2;
+    initialPointP1.y = MATRIX_WIDTH / 2;
+
+    //Player 2
+    Pixel initialPointP2;
+    initialPointP2.x = MATRIX_LENGTH / 2 - 1;
+    initialPointP2.y = MATRIX_WIDTH / 2 - 1;
+    snake1 = Snake(initialPointP1, RIGHT);
+    snake2 = Snake(initialPointP2, LEFT);
+    result = PLAYING;
+    updateFood();
+}

@@ -30,14 +30,24 @@ void loop() {
 }
 
 void dir_update() {
+  static uint8_t next_round_0 = 0;
+  static uint8_t next_round_1 = 0;
+
   if(WI_read(pipeNum)) {
     if(pipeNum==0) {
       if(recv_message[0][1] != 0)
         world.changeDirection(PLAYER1, recv_message[0][1]);
+      next_round_0 = recv_message[0][0];
     }
     else if(pipeNum==1){
       if(recv_message[1][1] != 0)
         world.changeDirection(PLAYER2, recv_message[1][1]);
+      next_round_1 = recv_message[1][0];
+    }
+  }
+  if(next_round_0 == 1 && next_round_1 == 1) {
+    if(world.result != PLAYING) {
+      world.startNewRound();
     }
   }
 }
