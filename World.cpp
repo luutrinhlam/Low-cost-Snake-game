@@ -89,6 +89,18 @@ void Snake::changeDirection(DIRECTION direction)
 {
     /// @brief  Changes the direction of the snake
     /// @param direction The new direction of the snake
+    if (this->direction == UP && direction == DOWN){
+      return;
+    }
+    else if (this->direction == DOWN && direction == UP){
+      return;
+    }
+    else if (this->direction == LEFT && direction == RIGHT){
+      return;
+    }
+    else if (this->direction == RIGHT && direction == LEFT){
+      return;
+    }
     this->direction = direction;
 }
 
@@ -181,8 +193,8 @@ void World::update()
     if (result == PLAYING)
     {
         bool ateFood1 = snake1.move(false, food);
-        //bool ateFood2 = snake2.move(false, food);
-        bool ateFood2 = false;
+        bool ateFood2 = snake2.move(false, food);
+//        bool ateFood2 = false;
         if (ateFood1 || ateFood2)
         {
             updateFood();
